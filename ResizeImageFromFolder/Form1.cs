@@ -121,6 +121,7 @@ namespace ResizeImageFromFolder
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            //worker completed
             if (e.Error != null) MessageBox.Show(e.Error.Message);
             else MessageBox.Show(e.Result.ToString() + " Images Resized and Saved");
         }
