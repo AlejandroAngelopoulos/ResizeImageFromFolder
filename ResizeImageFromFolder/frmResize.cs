@@ -23,11 +23,13 @@ namespace ResizeImageFromFolder
         FolderBrowserDialog fbd = new FolderBrowserDialog();
         DirectoryInfo dir;
         FileInfo[] file;
+        Image img;
 
         private void btnResize_Click(object sender, EventArgs e)
         {
             // Start BackgroundWorker
             prgPercentage.Visible = true;
+
             bgWorker.RunWorkerAsync();
         }
 
@@ -45,7 +47,7 @@ namespace ResizeImageFromFolder
             if (btneFrom.Text == string.Empty || btneTo.Text == string.Empty || txtWidth.Text == string.Empty)
             {
                 MessageBox.Show("Συμπληρώστε ολα τα πεδία");
-               
+
             }
             else
             {
@@ -57,7 +59,7 @@ namespace ResizeImageFromFolder
                 {
                     string dest_path = Path.Combine(btneTo.Text, Path.GetFileName(item));
                     //File.Copy(item.FullName,dest_path, true);
-                    Image img = Image.FromFile(item);
+                    img = Image.FromFile(item);
                     double w = Convert.ToDouble(txtWidth.Text);
                     double h = img.Height * (w / img.Width);
                     var newImg = Resize(img, w, h);
@@ -109,22 +111,44 @@ namespace ResizeImageFromFolder
             else
                 UpdateProgressBar(e.ProgressPercentage);
         }
-    
+
         private void bgWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             while (btneFrom.Text != string.Empty && btneTo.Text != string.Empty && txtWidth.Text != string.Empty)
             {
                 //worker completed
-            if (e.Error != null) MessageBox.Show(e.Error.Message);
-            else MessageBox.Show(e.Result.ToString() + " Images Resized and Saved");
-            break;
+                if (e.Error != null) MessageBox.Show(e.Error.Message);
+                else
+                {
+
+                    this.txtHeight.Text = Convert.ToString(img.Height * (Convert.ToInt32(txtWidth.Text) / img.Width));
+                    MessageBox.Show(e.Result.ToString() + " Images Resized and Saved");
+                }
+
+                break;
             }
-            
+
         }
 
         private void btnResize_MouseOver(object sender, EventArgs e)
         {
             Cursor = Cursors.Hand;
+        }
+
+        private void txtWidth_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtHeight_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtWidth_TextChanged(object sender, EventArgs e)
+        {
+            
+               
         }
     }
 }
