@@ -78,6 +78,7 @@ namespace ResizeImageFromFolder
             }
             else
             {
+                counter = 0;
                 string path = txtTF.Text + @"\" + "txtimg.txt";
                 dir = new DirectoryInfo(txtSF.Text);
                 file = dir.GetFiles();
@@ -104,7 +105,7 @@ namespace ResizeImageFromFolder
         private delegate void UpdateProgressBarDel(int prc);
         private void UpdateProgressBar(int prc)
         {
-            progressBarControl1.EditValue = prc;
+            progressBarControl1.Value = prc;
         }
 
       
