@@ -51,7 +51,6 @@ namespace ResizeImageFromFolder
             }
             else
             {
-                string path = btneTo.Text + @"\" + "txtimg.txt";
                 dir = new DirectoryInfo(btneFrom.Text);
                 file = dir.GetFiles();
                 FilterDirForImges(file);
@@ -135,20 +134,6 @@ namespace ResizeImageFromFolder
             Cursor = Cursors.Hand;
         }
 
-        private void txtWidth_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtHeight_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtWidth_TextChanged(object sender, EventArgs e)
-        {
-            
-               
-        }
+        
     }
 }
