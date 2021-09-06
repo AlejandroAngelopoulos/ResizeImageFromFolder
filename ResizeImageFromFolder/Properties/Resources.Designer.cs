@@ -75,7 +75,7 @@ namespace ResizeImageFromFolder.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap razor_logo {
             get {
-                object obj = ResourceManager.GetObject("razor-logo", resourceCulture);
+                object obj = ResourceManager.GetObject("razor_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
